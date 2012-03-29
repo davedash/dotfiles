@@ -9,7 +9,7 @@ set hidden                     " Manage multiple buffers
 set history=1000               " Long history
 set ignorecase                 " Ignore case in search
 set incsearch                  " Incremental search
-set laststatus=0               " Only use status line to split window.
+set laststatus=2               " always status line.
 set mousehide                  " Hide the pointer while typing
 set nocompatible               " Use vim settings
 set pastetoggle=<F2>
@@ -25,7 +25,7 @@ set t_Co=256                   " 256 colors
 set tabstop=4
 set tags=tags;/                " Where to find tags
 set title                      " set terminal title to filename
-set tw=80                      " Text width
+set tw=79                      " Text width
 
 filetype indent on
 
