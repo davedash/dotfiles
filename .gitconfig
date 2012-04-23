@@ -1,20 +1,20 @@
 [user]
-	name = Jeff Balogh
-	email = me@jeffbalogh.org
+	name = Dave Dash
+	email = dave@pinterest.com
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 [core]
-    excludesfile = /home/jeff/.gitignore
+    excludesfile = $HOME/.gitignore
 [alias]
     ci = commit
     co = checkout
+    sync = !git fetch && git rebase origin/master
 [merge]
 	tool = meld
 [github]
-	token = 8de0cba72dfb1837421604bdbbcefbab
-    user = jbalogh
+    user = davedash
 [interactive]
 	singlekey = 1
 [push]
