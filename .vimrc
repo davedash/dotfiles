@@ -29,15 +29,13 @@ set tw=79                      " Text width
 
 filetype indent on
 
-"" FuzzyFinder Textmate
-map <leader>t :FuzzyFinderTextMate<CR>
-let g:fuzzy_ignore="*.pyc,*.png,*.jpg,*.gif,*.ico,*.svg"
+map <leader>t :CommandT<CR>
 
 "" Better command completion
 set wildmenu
 set wildmode=list:longest,full
 "" Ignore these files when completing names and in Explorer
-set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
 
 syntax enable
 colorscheme asu1dark
@@ -70,16 +68,21 @@ map ,p "+gP
 
 """ Python
 map <F8> Oimport pdb; pdb.set_trace()<Esc>
-
+autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4
 "" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
 """ PHP
 autocmd FileType php set tw=0
 
-autocmd FileType html set ft=htmldjango
+""" DjangoTemplates
+au BufNewFile,BufRead *.txt set filetype=htmldjango
+autocmd FileType xhtml,html,txt set ft=htmldjango
 autocmd FileType html set sw=2
 autocmd FileType htmldjango setlocal sw=2
 
 """ Sphinx
 let @h = "yypVr"
+
+""" HTML
+au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
