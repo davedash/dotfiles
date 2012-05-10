@@ -30,7 +30,7 @@ set tw=79                      " Text width
 filetype indent on
 
 map <leader>t :CommandT<CR>
-
+map <leader>T :CommandTFlush<CR>
 "" Better command completion
 set wildmenu
 set wildmode=list:longest,full
@@ -71,6 +71,7 @@ map <F8> Oimport pdb; pdb.set_trace()<Esc>
 autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4
 "" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+au Filetype python noremap @_ va"c_(<C-r>")<Esc>F(x
 
 """ PHP
 autocmd FileType php set tw=0
@@ -80,6 +81,8 @@ au BufNewFile,BufRead *.txt set filetype=htmldjango
 autocmd FileType xhtml,html,txt set ft=htmldjango
 autocmd FileType html set sw=2
 autocmd FileType htmldjango setlocal sw=2
+au Filetype htmldjango vnoremap @_ c{{ _('<C-r>"') }}<Esc>
+au Filetype htmldjango noremap @_ vt<c{{ _('<C-r>"') }}<Esc>
 
 """ Sphinx
 let @h = "yypVr"
