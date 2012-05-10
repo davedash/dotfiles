@@ -48,3 +48,8 @@ function cd {
 }
 
 cd
+
+# Look at .aliasrc and steal!!!
+if [[ -r ${HOME}/.aliases ]]; then
+    eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases`
+fi
