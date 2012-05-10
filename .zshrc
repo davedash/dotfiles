@@ -53,3 +53,5 @@ for class in "${(s/ /)ZSH_CLASS}"; do
 done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+cd
+PROMPT="$(hostname) $PROMPT"
