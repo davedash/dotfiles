@@ -71,7 +71,7 @@ map <F8> Oimport pdb; pdb.set_trace()<Esc>
 autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4
 "" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
-au Filetype python noremap @_ va"c_(<C-r>")<Esc>F(x
+au Filetype python noremap @_ va"c _(<C-r>")<Esc>F_X
 
 """ PHP
 autocmd FileType php set tw=0
