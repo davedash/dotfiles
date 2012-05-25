@@ -35,6 +35,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=$PATH:$HOME/.dotfiles/bin
 export EDITOR=vi
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 export PYTHONPATH=$PYTHONPATH:/mnt/pinboard

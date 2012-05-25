@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+SHIP=${1-`git here`}
+if [ "$SHIP" == 'master' ]; then
+    echo "Master is not shippable."
+    exit 1
+fi
+set -x
+git co $SHIP
+git sync
+tools/check-production-ready
+git co master
+git merge $SHIP
+git push
+git branch -d $SHIP
