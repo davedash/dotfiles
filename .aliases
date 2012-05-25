@@ -1,9 +1,8 @@
-export ALIAS_FILE=$HOME/.aliases
 ack=ack-grep
 base_t='PYTHONPATH=~/pinboard:$PYTHONPATH nosetests'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
-editaliases='$EDITOR $ALIAS_FILE;realias'
+editaliases='$EDITOR $ALIAS_FILE'
 ga='git add'
 gd='git diff'
 gl1='git log --oneline'
@@ -11,7 +10,6 @@ grc='git rebase --continue'
 grim='git rebase --interactive origin/master'
 gs='git status'
 history='fc -l 1'
-realias='source $ALIAS_FILE'
 rezsh='source ~/.zshrc'
 rmpyc='rm **/*.pyc'
 rs='dj runserver_plus'

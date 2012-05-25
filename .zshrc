@@ -50,6 +50,7 @@ function cd {
 cd
 
 # Look at .aliasrc and steal!!!
-if [[ -r ${HOME}/.aliases ]]; then
+export ALIAS_FILE=$HOME/.aliases
+if [[ -r $ALIAS_FILE ]]; then
     eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases`
 fi
