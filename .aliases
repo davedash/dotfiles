@@ -1,4 +1,4 @@
-ack=ack-grep
+export ALIAS_FILE=$HOME/.aliases
 base_t='PYTHONPATH=~/pinboard:$PYTHONPATH nosetests'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
@@ -16,5 +16,4 @@ rmpyc='rm **/*.pyc'
 rs='dj runserver_plus'
 t='base_t --with-nicedots'
 tp='t --pdb-fail --pdb'
-vi=/usr/local/bin/vim
 whatchanged='git diff --name-only origin/master'
