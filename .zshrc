@@ -10,7 +10,9 @@ if [[ $HOST == 'immacomputer.local' ]] ; then
     ZSH_THEME="clean"
     ZSH_CLASS="macbook $ZSH_CLASS"
     alias pinboard='cd $HOME/Projects/pinboard'
-else
+elif [[ $HOST == 'puppet-dave' ]] ; then
+    ZSH_CLASS="puppet $ZSH_CLASS"
+else # dev boxes
     ZSH_CLASS="ec2"
     function cd {
         if [[ -n $1 ]] ; then
