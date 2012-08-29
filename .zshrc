@@ -9,6 +9,7 @@ ZSH_THEME="cloud"
 if [[ $HOST == 'immacomputer.local' ]] ; then
     ZSH_THEME="clean"
     ZSH_CLASS="macbook $ZSH_CLASS"
+    EDITOR=vim
     alias pinboard='cd $HOME/Projects/pinboard'
 elif [[ $HOST == 'puppet-dave' ]] ; then
     ZSH_CLASS="puppet $ZSH_CLASS"
@@ -30,14 +31,13 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git,ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export PATH=$PATH:$HOME/.dotfiles/bin
-export EDITOR=vi
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 export PYTHONPATH=$PYTHONPATH:/mnt/pinboard
 export IRC_USER='davedash'
@@ -55,5 +55,20 @@ for class in "${(s/ /)ZSH_CLASS}"; do
 done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-cd
-PROMPT="$(hostname) $PROMPT"
+PROJECT_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+function dsh20 {
+    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
+    # update the groups
+    usage="$0 group cmd"
+    [ -z "$1" ] && echo $usage && return 1
+    [ -z "$2" ] && echo $usage && return 1
+    dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 20 -M -c -g "$1" "$2"
+}
+
+function dsh_update {
+    cd ~/work/pinboard
+    tools/puppet/puppet-to-dsh.py
+}

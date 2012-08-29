@@ -10,7 +10,7 @@
 [alias]
     ci = commit
     co = checkout
-    sync = !git fetch && git rebase origin/master
+    sync = !git fetch origin && git rebase origin/master
 [merge]
 	tool = meld
 [github]
@@ -19,3 +19,9 @@
 	singlekey = 1
 [push]
 	default = matching
+[reviewboard]
+[reviewboard]
+[reviewboard]
+[reviewboard]
+[reviewboard]
+	url = https://reviewboard.pinadmin.com/
