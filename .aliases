@@ -1,5 +1,5 @@
-export ALIAS_FILE=$HOME/.aliases
-base_t='PYTHONPATH=~/pinboard:$PYTHONPATH nosetests'
+ack=ack-grep
+omz='cd ~/.oh-my-zsh'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
 editaliases='$EDITOR $ALIAS_FILE'
@@ -14,6 +14,8 @@ history='fc -l 1'
 rezsh='source ~/.zshrc'
 rmpyc='rm **/*.pyc'
 rs='dj runserver_plus'
-t='base_t --with-nicedots'
+t='./testing/run_tests.py'
+ct='coverage run --rcfile=testing/coverage.conf t'
+cr='coverage report --rcfile=testing/coverage.conf'
 tp='t --pdb-fail --pdb'
 whatchanged='git diff --name-only origin/master'
