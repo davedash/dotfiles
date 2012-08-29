@@ -14,6 +14,7 @@ set ignorecase                 " Ignore case in search
 set incsearch                  " Incremental search
 set laststatus=2               " always status line.
 set mousehide                  " Hide the pointer while typing
+set nocp
 set nocompatible               " Use vim settings
 set pastetoggle=<F2>
 set ruler                      " Where am I?
@@ -30,6 +31,7 @@ set tags=tags;/                " Where to find tags
 set title                      " set terminal title to filename
 set tw=79                      " Text width
 
+call pathogen#infect()
 filetype indent on
 filetype on
 filetype plugin on
@@ -99,6 +101,4 @@ let @h = "yypVr"
 
 """ HTML
 au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
-
-call pathogen#infect()
 
