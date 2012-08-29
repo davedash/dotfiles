@@ -1,10 +1,13 @@
+" common mistakes
+command W w
+command Wq wq
+
 " autochdir breaks vcs.
 "set autochdir                  " Find files next to the current buffer
 set autoindent
 set background=dark
 set backspace=indent,eol,start " Smart backspacing
 set expandtab
-set foldmethod=marker          " 3 curly braces
 set hidden                     " Manage multiple buffers
 set history=1000               " Long history
 set ignorecase                 " Ignore case in search
@@ -28,9 +31,16 @@ set title                      " set terminal title to filename
 set tw=79                      " Text width
 
 filetype indent on
-
+filetype on
+filetype plugin on
 map <leader>t :CommandT<CR>
 map <leader>T :CommandTFlush<CR>
+
+"" Splits
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+set wmh=0
+
 "" Better command completion
 set wildmenu
 set wildmode=list:longest,full
@@ -68,7 +78,7 @@ map ,p "+gP
 
 """ Python
 map <F8> Oimport pdb; pdb.set_trace()<Esc>
-autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4
+autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4 fdm=indent fdl=10
 "" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 au Filetype python noremap @_ va"c _(<C-r>")<Esc>F_X
@@ -80,7 +90,7 @@ autocmd FileType php set tw=0
 au BufNewFile,BufRead *.txt set filetype=htmldjango
 autocmd FileType xhtml,html,txt set ft=htmldjango
 autocmd FileType html set sw=2
-autocmd FileType htmldjango setlocal sw=2
+autocmd FileType htmldjango setlocal sw=2 ts=2
 au Filetype htmldjango vnoremap @_ c{{ _('<C-r>"') }}<Esc>
 au Filetype htmldjango noremap @_ vt<c{{ _('<C-r>"') }}<Esc>
 
@@ -89,3 +99,6 @@ let @h = "yypVr"
 
 """ HTML
 au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
+
+call pathogen#infect()
+
