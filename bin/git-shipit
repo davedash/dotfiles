@@ -11,6 +11,9 @@ git co $SHIP
 git sync
 tools/check-production-ready
 git co master
-git merge $SHIP
+git merge --ff-only $SHIP
 git push
 git branch -d $SHIP
+
+# next step... close reviewboard
+echo "Close rb for $SHIP"
