@@ -1,4 +1,5 @@
 ack=ack-grep
+ai='autopep8 -i'
 omz='cd ~/.oh-my-zsh'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
@@ -14,7 +15,7 @@ history='fc -l 1'
 rezsh='source ~/.zshrc'
 rmpyc='rm **/*.pyc'
 rs='dj runserver_plus'
-t='./testing/run_tests.py'
+t='./testing/run_tests.py --logging-clear-handlers --with-nicedots '
 ct='coverage run --rcfile=testing/coverage.conf t'
 cr='coverage report --rcfile=testing/coverage.conf'
 tp='t --pdb-fail --pdb'
