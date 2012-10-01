@@ -4,3 +4,4 @@
 --type-add=php=inc
 --type-set=rst=rst
 --type-add=html=txt
+--type-set=puppet=pp
