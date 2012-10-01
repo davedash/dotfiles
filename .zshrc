@@ -11,18 +11,14 @@ if [[ $HOST == 'immacomputer.local' ]] ; then
     ZSH_THEME="clean"
     ZSH_CLASS="macbook $ZSH_CLASS"
     alias pinboard='cd $HOME/Projects/pinboard'
+    PROJECT_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [[ $HOST == 'devapp002' ]] ; then
+    ZSH_CLASS="devapp $ZSH_CLASS"
 elif [[ $HOST == 'puppet-dave' ]] ; then
     ZSH_CLASS="puppet $ZSH_CLASS"
 else # dev boxes
     ZSH_CLASS="ec2"
-    function cd {
-        if [[ -n $1 ]] ; then
-            builtin cd $*
-        else
-            builtin cd $HOME/pinboard
-        fi
-    }
-    cd
 fi
 
 # Uncomment following line if you want red dots to be displayed while waiting
@@ -49,6 +45,19 @@ if [[ -r $ALIAS_FILE ]]; then
     eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases`
 fi
 
+export AUTOCD=$HOME/.autocd
+if [[ -r $AUTOCD ]]; then
+    function cd {
+        if [[ -n $1 ]] ; then
+            builtin cd $*
+        else
+            eval builtin cd $(cat $AUTOCD)
+        fi
+    }
+    cd
+fi
+
+
 # Look at .aliasrc and steal!!!
 for class in "${(s/ /)ZSH_CLASS}"; do
     if [[ -r ${HOME}/.aliases.${class} ]]; then
@@ -57,8 +66,6 @@ for class in "${(s/ /)ZSH_CLASS}"; do
 done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PROJECT_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 
 function dsh20 {
@@ -81,3 +88,7 @@ fpath=(~/.zsh/completion $fpath)
 # compsys initialization
 autoload -U compinit
 compinit
+
+if [[ $ZSH_CLASS == *devapp* ]] ; then
+    PROMPT="$(hostname) $PROMPT"
+fi
