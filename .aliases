@@ -1,5 +1,4 @@
 ack=ack-grep
-ai='autopep8 -i'
 omz='cd ~/.oh-my-zsh'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
