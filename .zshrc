@@ -108,3 +108,8 @@ compinit
 if [[ $ZSH_CLASS == *devapp* ]] ; then
     PROMPT="$(hostname) $PROMPT"
 fi
+
+# Local configs, keys, etc should go in ~/.local.
+if [[ -r ${HOME}/.local ]]; then
+    eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases.${ZSH_CLASS}`
+fi
