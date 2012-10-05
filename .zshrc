@@ -94,6 +94,10 @@ function dsh_update {
     tools/puppet/puppet-to-dsh.py
 }
 
+function ai {
+    autopep8 -i $1
+    pep8 $1
+}
 # Custom completions
 fpath=(~/.zsh/completion $fpath)
 
