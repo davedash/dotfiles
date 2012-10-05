@@ -113,3 +113,5 @@ fi
 if [[ -r ${HOME}/.local ]]; then
     eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases.${ZSH_CLASS}`
 fi
+
+export AUTOSSH_PORT=0
