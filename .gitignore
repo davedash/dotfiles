@@ -19,3 +19,4 @@ dist
 .virtualenvs
 .ipython
 .DS_Store
+.vim/.netrwhist
