@@ -7,7 +7,8 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 export EDITOR=vim
 ZSH_THEME="cloud"
-if [[ $HOST == 'immacomputer.local' ]] ; then
+var="immacomputer"
+if [[ $HOST == $var* ]] ; then
     ZSH_THEME="clean"
     ZSH_CLASS="macbook $ZSH_CLASS"
     alias pinboard='cd $HOME/Projects/pinboard'
