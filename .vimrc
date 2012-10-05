@@ -102,12 +102,6 @@ let @h = "yypVr"
 """ HTML
 au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 """ Puppet
 au BufNewFile,BufRead *.pp set filetype=puppet
 au Filetype puppet set sw=2
-=======
->>>>>>> 9c623dd1755220c79ce7de54063266cfb6a93e53
->>>>>>> Edit puppet files.
