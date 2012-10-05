@@ -12,7 +12,7 @@ if [[ $HOST == $var* ]] ; then
     ZSH_THEME="clean"
     ZSH_CLASS="macbook $ZSH_CLASS"
     alias pinboard='cd $HOME/Projects/pinboard'
-    PROJECT_HOME=$HOME/.virtualenvs
+    PROJECT_HOME=$HOME/Projects
     source /usr/local/bin/virtualenvwrapper.sh
 elif [[ $HOST == 'devapp002' ]] ; then
     ZSH_CLASS="devapp ec2 $ZSH_CLASS"
