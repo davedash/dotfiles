@@ -14,9 +14,10 @@ if [[ $HOST == 'immacomputer.local' ]] ; then
     PROJECT_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh
 elif [[ $HOST == 'devapp002' ]] ; then
-    ZSH_CLASS="devapp $ZSH_CLASS"
+    ZSH_CLASS="devapp ec2 $ZSH_CLASS"
 elif [[ $HOST == 'puppet-dave' ]] ; then
-    ZSH_CLASS="puppet $ZSH_CLASS"
+    ZSH_CLASS="puppet ec2 $ZSH_CLASS"
+    ZSH_THEME="af-magic"
 else # dev boxes
     ZSH_CLASS="ec2"
 fi
@@ -61,7 +62,7 @@ fi
 # Look at .aliasrc and steal!!!
 for class in "${(s/ /)ZSH_CLASS}"; do
     if [[ -r ${HOME}/.aliases.${class} ]]; then
-        eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases.${ZSH_CLASS}`
+        eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases.${class}`
     fi
 done
 
