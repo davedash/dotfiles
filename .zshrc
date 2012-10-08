@@ -110,7 +110,7 @@ fi
 
 # Local configs, keys, etc should go in ~/.local.
 if [[ -r ${HOME}/.local ]]; then
-    eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliases.${ZSH_CLASS}`
+    source ${HOME}/.local
 fi
 
 export AUTOSSH_PORT=0
