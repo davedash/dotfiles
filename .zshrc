@@ -9,9 +9,11 @@ export EDITOR=vim
 ZSH_THEME="cloud"
 var="immacomputer"
 if [[ $HOST == $var* ]] ; then
-    ZSH_THEME="clean"
+    ZSH_THEME="af-magic"
     ZSH_CLASS="macbook $ZSH_CLASS"
+    export EC2_HOME=$HOME/bin/ec2-api-tools-1.6.3.1
     PROJECT_HOME=$HOME/Projects
+    VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     source /usr/local/bin/virtualenvwrapper.sh
 elif [[ $HOST == 'devapp002' ]] ; then
     ZSH_CLASS="devapp ec2 $ZSH_CLASS"
