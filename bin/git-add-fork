@@ -1,0 +1,2 @@
+REPO=$(basename $(pwd))
+git remote add $1 git@github.pinadmin.com:$1/pinboard
