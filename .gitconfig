@@ -8,11 +8,12 @@
 [core]
     excludesfile = $HOME/.gitignore
 [alias]
+    ff = merge --ff-only
     ci = commit
     co = checkout
     sync = !git fetch origin && git rebase origin/master
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    new = checkout origin/master -b
+    new = checkout upstream/master -b
 [merge]
 	tool = meld
 [github]
@@ -21,5 +22,3 @@
 	singlekey = 1
 [push]
 	default = matching
-[reviewboard]
-	url = https://reviewboard.pinadmin.com/

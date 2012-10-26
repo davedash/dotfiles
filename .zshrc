@@ -80,7 +80,6 @@ function dsh5 {
         -o "-o StrictHostKeyChecking=no" -F 4 -M -c -g "$1" "$2"
 }
 
-
 function dsh20 {
     # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
     # update the groups
@@ -88,6 +87,15 @@ function dsh20 {
     [ -z "$1" ] && echo $usage && return 1
     [ -z "$2" ] && echo $usage && return 1
     dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 20 -M -c -g "$1" "$2"
+}
+
+function dsh40 {
+    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
+    # update the groups
+    usage="$0 group cmd"
+    [ -z "$1" ] && echo $usage && return 1
+    [ -z "$2" ] && echo $usage && return 1
+    dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 40 -M -c -g "$1" "$2"
 }
 
 function dsh_update {
