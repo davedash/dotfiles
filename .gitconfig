@@ -11,9 +11,10 @@
     ff = merge --ff-only
     ci = commit
     co = checkout
+    ff = merge --ff-only
     sync = !git fetch origin && git rebase origin/master
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    new = checkout upstream/master -b
+    new = checkout master -b
 [merge]
 	tool = meld
 [github]
