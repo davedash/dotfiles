@@ -1,3 +1,4 @@
+sshr='ssh -l root'
 omz='cd ~/.oh-my-zsh'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
