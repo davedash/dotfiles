@@ -110,6 +110,11 @@ function ai {
     autopep8 -i $1
     pep8 $1
 }
+
+function puppet {
+  ssh -l root $1 "puppetd -t"
+}
+
 # Custom completions
 fpath=(~/.zsh/completion $fpath)
 
