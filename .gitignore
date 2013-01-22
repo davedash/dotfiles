@@ -2,6 +2,7 @@
 tags
 TAGS
 *.swp
+.*.swp
 *.egg-info
 .emacs.desktop
 .#*
