@@ -39,6 +39,9 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export PATH=$PATH:$HOME/.dotfiles/bin
+
+# Ruby:
+export PATH=$PATH:/var/lib/gems/1.8/bin/
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 export PYTHONPATH=$PYTHONPATH:/mnt/pinboard
 export IRC_USER='davedash'
@@ -124,3 +127,7 @@ if [[ -r ${HOME}/.local ]]; then
 fi
 
 export AUTOSSH_PORT=0
+
+function findit {
+    grep -R $1 .
+}
