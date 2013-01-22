@@ -1,4 +1,5 @@
-sshr='ssh -l root'
+ssh_dangerous='ssh -o UserKnownHostsFile=/dev/null -o "StrictHostKeyChecking no"'
+sshr='ssh_dangerous -l root'
 omz='cd ~/.oh-my-zsh'
 datalayer='/mnt/pinboard/tools/internal_apps/datalayer/start.py 9000'
 dj=./manage.py
