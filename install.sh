@@ -2,7 +2,7 @@
 cd ~/.dotfiles
 for f in * .*; do
     if [ "$f" = ".git" ]; then
-	continue
+	    continue
     fi
     # No files ending in "." e.g. . or ..
     if [[ "$f" == *. ]]; then
