@@ -101,6 +101,16 @@ function dsh40 {
     dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 40 -M -c -g "$1" "$2"
 }
 
+function ubudsh {
+    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
+    # update the groups
+    usage="$0 group cmd"
+    [ -z "$1" ] && echo $usage && return 1
+    [ -z "$2" ] && echo $usage && return 1
+    dsh -f $1 -r ssh -o "-l ubuntu" -o "-p 22" -o "-i ~/.aws/ops_rsa" -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 40 -M -c "sudo $2"
+}
+
+
 function dsh_update {
     cd ~/work/pinboard
     tools/puppet/puppet-to-dsh.py
@@ -112,7 +122,20 @@ function ai {
 }
 
 function puppet {
-  ssh -l root $1 "puppetd -t"
+   [ -z "$2" ] && sshr $1 "puppetd -t" && return 0
+   sshr $1 "puppetd -t --tags $2"
+}
+
+function puppetdeploy {
+    sshr $1 "puppet agent -t --test deploy"
+}
+
+function p2d {
+    pushd
+    workon pinboard
+    tools/puppet/puppet-to-dsh.py
+    deactivate
+    popd
 }
 
 # Custom completions
