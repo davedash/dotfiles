@@ -1,1 +1,1 @@
-alias i from IPython.frontend.terminal.embed import InteractiveShellEmbed as IPSh; IPSh()()
+alias i from IPython.terminal.embed import InteractiveShellEmbed as IPSh; IPSh()()
