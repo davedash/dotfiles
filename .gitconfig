@@ -23,4 +23,6 @@
 [interactive]
 	singlekey = 1
 [push]
-	default = matching
+    default = matching
+[hub]
+    protocol = ssh
