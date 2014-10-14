@@ -2,7 +2,7 @@ autoload colors; colors
 
 site_packages=$(virtualenvwrapper_get_site_packages_dir)
 
-PS1="%{$fg[green]%}($(basename $VIRTUAL_ENV))%{$fg[white]%}$_OLD_VIRTUAL_PS1"
+# PS1="%{$fg[green]%}($(basename $VIRTUAL_ENV))%{$fg[white]%}$_OLD_VIRTUAL_PS1"
 
 PROJECT=`basename $VIRTUAL_ENV`
 DIR="$HOME/dev/$PROJECT"
