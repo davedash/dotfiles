@@ -1,12 +1,12 @@
 [user]
-	name = Dave Dash
-	email = dave@pinterest.com
+    name = Dave Dash
+    email = dd@davedash.com
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 [core]
-    excludesfile = $HOME/.gitignore
+    excludesfile = /Users/davedash/.gitignore
 [alias]
     ff = merge --ff-only
     ci = commit
