@@ -105,3 +105,4 @@ au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
 """ Puppet
 au BufNewFile,BufRead *.pp set filetype=puppet
 au Filetype puppet set sw=2
+
