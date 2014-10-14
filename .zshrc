@@ -6,23 +6,20 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 export EDITOR=vim
-ZSH_THEME="cloud"
-var="immacomputer"
-if [[ $HOST == $var* ]] ; then
-    ZSH_THEME="af-magic"
-    ZSH_CLASS="macbook $ZSH_CLASS"
-    export EC2_HOME=$HOME/bin/ec2-api-tools-1.6.3.1
-    PROJECT_HOME=$HOME/Projects
-    VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    source /usr/local/bin/virtualenvwrapper.sh
-elif [[ $HOST == 'devapp002' ]] ; then
-    ZSH_CLASS="devapp ec2 $ZSH_CLASS"
-elif [[ $HOST == 'puppet-dave' ]] ; then
-    ZSH_CLASS="puppet ec2 $ZSH_CLASS"
-    ZSH_THEME="af-magic"
-else # dev boxes
-    ZSH_CLASS="ec2"
-fi
+
+# ZSH_THEME="cloud"
+# var="immacomputer"
+#
+# if [[ $HOST == $var* ]] ; then
+ZSH_THEME="af-magic"
+ZSH_CLASS="macbook $ZSH_CLASS"
+export EC2_HOME=$HOME/bin/ec2-api-tools-1.6.3.1
+PROJECT_HOME=$HOME/code
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+source /usr/local/bin/virtualenvwrapper.sh
+# else # dev boxes
+#     ZSH_CLASS="ec2"
+# fi
 
 # Uncomment following line if you want red dots to be displayed while waiting
 # for completion
@@ -38,10 +35,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export PATH=$PATH:$HOME/.dotfiles/bin
+export PATH=$PATH:$HOME/.dotfiles/bin:$HOME/bin
 
 # Ruby:
-export PATH=$PATH:/var/lib/gems/1.8/bin/
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 export PYTHONPATH=$PYTHONPATH:/mnt/pinboard
 export IRC_USER='davedash'
@@ -149,3 +145,8 @@ export AUTOSSH_PORT=0
 function findit {
     grep -R $1 .
 }
+
+export GOPATH=$HOME/code/go
+
+# added by travis gem
+[ -f /Users/davedash/.travis/travis.sh ] && source /Users/davedash/.travis/travis.sh
