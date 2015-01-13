@@ -34,7 +34,7 @@ plugins=(git ssh-agent virtualenv)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
 export PATH=$PATH:$HOME/.dotfiles/bin:$HOME/bin
 
 # Ruby:
@@ -147,6 +147,23 @@ function findit {
 }
 
 export GOPATH=$HOME/code/go
-
+export PATH=$PATH:$GOPATH/bin
 # added by travis gem
 [ -f /Users/davedash/.travis/travis.sh ] && source /Users/davedash/.travis/travis.sh
+
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/davedash/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
+function mfpcurl {
+    curl http://www.myfitnesspal.com/$@
+}
+
+export AWS_DEFAULT_REGION=us-east-1
+
+function c {
+    dir=$(find ~/code \( -type d -or -type l \) -maxdepth 2 -d -name $1|head -1)
+    if [ -n "$dir" ]; then
+        cd $dir
+    fi
+}

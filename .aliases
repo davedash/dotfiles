@@ -1,3 +1,6 @@
+# Colorful less.
+less='less -r'
+
 ssh_dangerous='ssh -o UserKnownHostsFile=/dev/null -o "StrictHostKeyChecking no"'
 sshr='ssh_dangerous -l root'
 omz='cd ~/.oh-my-zsh'
@@ -14,5 +17,12 @@ wip='git commit -am wip'
 pullr='hub push dave $(git here) && hub pull-request'
 
 # MFP
-alias salt-root='cd ~/code/mfp-salt-vagrant/salt/roots'
-alias arc='$HOME/code/arcanist/bin/arc'
+salt-root='cd ~/code/mfp-salt-vagrant/salt/roots'
+pillar='cd ~/code/mfp-salt-vagrant/salt/pillar'
+arc='$HOME/code/arcanist/bin/arc'
+
+# SP
+
+cdtf='cd ~/code/sp/terraform-config'
+tfp='terraform plan -module-depth=1'
+tfa='terraform apply'
