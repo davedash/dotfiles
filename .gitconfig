@@ -2,7 +2,7 @@
     name = Dave Dash
     email = dd@davedash.com
 [color]
-	diff = auto
+    diff = auto
 	status = auto
 	branch = auto
 [core]
