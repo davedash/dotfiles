@@ -5,3 +5,4 @@
 --type-set=rst=rst
 --type-add=html=txt
 --type-set=puppet=pp
+--type-set=terraform=tf

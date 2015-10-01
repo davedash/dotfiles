@@ -16,7 +16,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     new = checkout master -b
     here = rev-parse --abbrev-ref HEAD
-    makepr = !git push origin $(git rev-parse --abbrev-ref HEAD) && hub pull-request -o
+    makepr = !git push origin $(git rev-parse --abbrev-ref HEAD) $@ && hub pull-request -o
 [merge]
 	tool = meld
 [github]
@@ -31,3 +31,7 @@
 	helper = osxkeychain
 [color "diff"]
 	whitespace = red reverse
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

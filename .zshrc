@@ -7,11 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 export EDITOR=vim
 
-# ZSH_THEME="cloud"
-# var="immacomputer"
-#
-# if [[ $HOST == $var* ]] ; then
-ZSH_THEME="af-magic"
+ZSH_THEME="bureau"
 ZSH_CLASS="macbook $ZSH_CLASS"
 export EC2_HOME=$HOME/bin/ec2-api-tools-1.6.3.1
 PROJECT_HOME=$HOME/code
@@ -155,10 +151,6 @@ export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/davedash/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
-function mfpcurl {
-    curl http://www.myfitnesspal.com/$@
-}
-
 export AWS_DEFAULT_REGION=us-east-1
 
 function c {
@@ -166,4 +158,23 @@ function c {
     if [ -n "$dir" ]; then
         cd $dir
     fi
+}
+
+function mkgoproject {
+  GOPROJECTPATH=${GOPATH}/src/github.com/davedash/$1
+  mkdir ${GOPROJECTPATH}
+  ln -s ${GOPROJECTPATH} ${GOPATH}/../${1}
+  cd ${GOPATH}/../${1}
+}
+
+function countdown {
+  count=$1
+  shift
+  $@
+  if [ "$count" -gt "0" ]; then
+      next=$(expr $count / 2)
+      until=$(expr $next + 1)
+      for i in {${count}..${until}}; do; echo $i; sleep 1; done
+      countdown ${next} $@
+  fi
 }

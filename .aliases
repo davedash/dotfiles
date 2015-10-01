@@ -16,13 +16,9 @@ rmpyc='rm **/*.pyc'
 wip='git commit -am wip'
 pullr='hub push dave $(git here) && hub pull-request'
 
-# MFP
-salt-root='cd ~/code/mfp-salt-vagrant/salt/roots'
-pillar='cd ~/code/mfp-salt-vagrant/salt/pillar'
-arc='$HOME/code/arcanist/bin/arc'
-
 # SP
 
 cdtf='cd ~/code/sp/terraform-config'
-tfp='terraform plan -module-depth=1'
+tfp='terraform plan -module-depth=10'
 tfa='terraform apply'
+spec='bundle exec rspec --no-profile'
