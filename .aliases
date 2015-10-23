@@ -19,6 +19,8 @@ pullr='hub push dave $(git here) && hub pull-request'
 # SP
 
 cdtf='cd ~/code/sp/terraform-config'
-tfp='terraform plan -module-depth=10'
-tfa='terraform apply'
+tfp='terraform plan -module-depth=10 -out=tf.out'
+tfa='terraform apply tf.out'
 spec='bundle exec rspec --no-profile'
+tf='terraform'
+tfg='tf get'
