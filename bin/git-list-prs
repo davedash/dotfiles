@@ -1,0 +1,11 @@
+#!/bin/bash
+REPO=$(git remote -v|grep fetch|awk -F'[: .]' '{print $3}')
+TOKEN=$(cat ~/.config/hub | grep oauth_token | cut -d ' ' -f4)
+
+BLUE=`echo -en '\e[34m'`
+YELLOW=`echo -en '\e[93m'`
+RESET=`echo -en '\e[00m'`
+
+PULL_DATA=$(http get "https://api.github.com/repos/${REPO}/pulls" \
+    Authorization:"token ${TOKEN}")
+echo ${PULL_DATA} | jq -r '.[] | "\(.head.ref) PR #\(.number) \(.title)"'
