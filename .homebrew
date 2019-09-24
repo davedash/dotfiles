@@ -1,11 +1,11 @@
+pipenv
 git-extras
 hub
 python
 autossh
 ack
-go
 wget
 watch
-csshx
 gist
 mosh
+fzf

@@ -31,7 +31,6 @@ set tags=tags;/                " Where to find tags
 set title                      " set terminal title to filename
 set tw=79                      " Text width
 
-call pathogen#infect()
 filetype indent on
 filetype on
 filetype plugin on
@@ -50,7 +49,6 @@ set wildmode=list:longest,full
 set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
 
 syntax enable
-colorscheme asu1dark
 
 "" Use % to match tags, if/else
 runtime macros/matchit.vim
@@ -78,31 +76,9 @@ map L $
 map ,c "+y
 map ,p "+gP
 
-""" Python
-map <F8> Oimport pdb; pdb.set_trace()<Esc>
-autocmd FileType python set tw=79 cc=+1 ts=4 shiftwidth=4 fdm=indent fdl=10
 "" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 au Filetype python noremap @_ va"c _(<C-r>")<Esc>F_X
 
-""" PHP
-autocmd FileType php set tw=0
-
-""" DjangoTemplates
-au BufNewFile,BufRead *.txt set filetype=htmldjango
-autocmd FileType xhtml,html,txt set ft=htmldjango
-autocmd FileType html set sw=2
-autocmd FileType htmldjango setlocal sw=2 ts=2
-au Filetype htmldjango vnoremap @_ c{{ _('<C-r>"') }}<Esc>
-au Filetype htmldjango noremap @_ vt<c{{ _('<C-r>"') }}<Esc>
-
-""" Sphinx
-let @h = "yypVr"
-
 """ HTML
 au Filetype htmldjango,html,xml,xsl source ~/.vim/scripts/closetag.vim
-
-""" Puppet
-au BufNewFile,BufRead *.pp set filetype=puppet
-au Filetype puppet set sw=2
-

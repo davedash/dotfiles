@@ -9,10 +9,7 @@ export EDITOR=vim
 
 ZSH_THEME="bureau"
 ZSH_CLASS="macbook $ZSH_CLASS"
-export EC2_HOME=$HOME/bin/ec2-api-tools-1.6.3.1
 PROJECT_HOME=$HOME/code
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-source /usr/local/bin/virtualenvwrapper.sh
 # else # dev boxes
 #     ZSH_CLASS="ec2"
 # fi
@@ -25,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 # ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
 # ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ssh-agent virtualenv)
+plugins=(git virtualenv dotenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,59 +62,11 @@ done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-function dsh5 {
-    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
-    # update the groups
-    usage="$0 group cmd"
-    [ -z "$1" ] && echo $usage && return 1
-    [ -z "$2" ] && echo $usage && return 1
-    dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" \
-        -o "-o StrictHostKeyChecking=no" -F 4 -M -c -g "$1" "$2"
-}
 
-function dsh20 {
-    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
-    # update the groups
-    usage="$0 group cmd"
-    [ -z "$1" ] && echo $usage && return 1
-    [ -z "$2" ] && echo $usage && return 1
-    dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 20 -M -c -g "$1" "$2"
-}
-
-function dsh40 {
-    # Make sure to run tools/puppet/puppet-to-dsh.py beforehand to
-    # update the groups
-    usage="$0 group cmd"
-    [ -z "$1" ] && echo $usage && return 1
-    [ -z "$2" ] && echo $usage && return 1
-    dsh -r ssh -o "-o ConnectTimeout=10" -o "-o CheckHostIP=no" -o "-o StrictHostKeyChecking=no" -F 40 -M -c -g "$1" "$2"
-}
-
-function dsh_update {
-    cd ~/work/pinboard
-    tools/puppet/puppet-to-dsh.py
-}
 
 function ai {
     autopep8 -i $1
     pep8 $1
-}
-
-function puppet {
-   [ -z "$2" ] && sshr $1 "puppetd -t" && return 0
-   sshr $1 "puppetd -t --tags $2"
-}
-
-function puppetdeploy {
-    sshr $1 "puppet agent -t --test deploy"
-}
-
-function p2d {
-    pushd
-    workon pinboard
-    tools/puppet/puppet-to-dsh.py
-    deactivate
-    popd
 }
 
 # Custom completions
@@ -148,11 +97,6 @@ export PATH=$PATH:$GOPATH/bin
 [ -f /Users/davedash/.travis/travis.sh ] && source /Users/davedash/.travis/travis.sh
 
 
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_MACHINE_NAME=default
-export DOCKER_TLS_VERIFY=1
-export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
-
 export AWS_DEFAULT_REGION=us-east-1
 
 function c {
@@ -180,3 +124,4 @@ function countdown {
       countdown ${next} $@
   fi
 }
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
