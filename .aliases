@@ -1,26 +1,18 @@
 # Colorful less.
 less='less -r'
 
-ssh_dangerous='ssh -o UserKnownHostsFile=/dev/null -o "StrictHostKeyChecking no"'
-sshr='ssh_dangerous -l root'
 omz='cd ~/.oh-my-zsh'
 editaliases='$EDITOR $ALIAS_FILE'
 ga='git add'
 gd='git diff'
 grc='git rebase --continue'
-grim='git rebase --interactive origin/master'
+grim='git rebase --interactive origin/main'
 gs='git status'
 history='fc -l 1'
 rezsh='source ~/.zshrc'
-rmpyc='rm **/*.pyc'
 wip='git commit -am wip'
-pullr='hub push dave $(git here) && hub pull-request'
 
-# SP
+# Docker
+dc='docker-compose'
 
-cdtf='cd ~/code/sp/terraform-config'
-tfp='terraform plan -module-depth=10 -out=tf.out'
-tfa='terraform apply tf.out'
-spec='bundle exec rspec --no-profile'
 tf='terraform'
-tfg='tf get'
