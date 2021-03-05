@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SHIP=${1-`git here`}
+if [ "$SHIP" == 'master' ]; then
+    echo "Master is not a PR branch."
+    exit 1
+fi
+
+git push -f origin ${SHIP}

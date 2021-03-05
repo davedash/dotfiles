@@ -1,6 +1,6 @@
 [user]
-    name = Dave Dash
-    email = dd@davedash.com
+	name = Dave Dash
+	email = dd@davedash.com
 [color]
     diff = auto
 	status = auto
@@ -12,11 +12,12 @@
     ci = commit
     co = checkout
     ff = merge --ff-only
-    sync = !git fetch origin && git rebase origin/master
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    new = checkout master -b
+    fro = !git fetch origin && git rebase origin/main
+	  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    new = checkout main -b
     here = rev-parse --abbrev-ref HEAD
     makepr = !git push origin $(git rev-parse --abbrev-ref HEAD) $@ && hub pull-request -o
+		makeprf = !git fro && git update-pr && git makepr
 [merge]
 	tool = meld
 [github]
@@ -32,6 +33,9 @@
 [color "diff"]
 	whitespace = red reverse
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
+[pager]
+	branch = false

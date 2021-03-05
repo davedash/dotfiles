@@ -1,11 +1,11 @@
 #!/bin/bash
-git checkout master || exit 1
-git rebase origin/master
+git checkout main || exit 1
+git rebase origin/main
 
 for branch in $(git branch --no-merged); do
-    git checkout $branch
-    git rebase origin/master || git rebase --abort
+    git checkout "$branch"
+    git rebase origin/main || git rebase --abort
 done
 
-git checkout master
+git checkout main
 git branch -d $(git branch --merged | grep -v \*)
