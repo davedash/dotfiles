@@ -13,8 +13,4 @@ set -e
 
 echo "Installing apps via Homebrew Cask"
 
-grep -v '^#' $ROOT/.homebrew_cask | xargs brew cask install
-
-echo "Installing system python things that I want everywhere"
-
-sudo pip install -U fig
+grep -v '^#' $ROOT/.homebrew_cask | xargs brew install

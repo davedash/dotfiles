@@ -1,0 +1,6 @@
+#!/bin/bash
+
+heroku logs -r staging  "$@" -t | while read -r line;
+do
+    echo "${line}" | sed 's/^[^{]*: //' | pino-pretty
+done

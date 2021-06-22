@@ -10,9 +10,6 @@ export EDITOR=vim
 ZSH_THEME="bureau"
 ZSH_CLASS="macbook $ZSH_CLASS"
 PROJECT_HOME=$HOME/code
-# else # dev boxes
-#     ZSH_CLASS="ec2"
-# fi
 
 # Uncomment following line if you want red dots to be displayed while waiting
 # for completion
@@ -22,7 +19,7 @@ COMPLETION_WAITING_DOTS="true"
 # ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
 # ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv dotenv)
+plugins=(git virtualenv dotenv yarn fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,17 +90,16 @@ function findit {
 
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
-# added by travis gem
-[ -f /Users/davedash/.travis/travis.sh ] && source /Users/davedash/.travis/travis.sh
-
-
-export AWS_DEFAULT_REGION=us-east-1
 
 function c {
-    dir=$(find ~/code \( -type d -or -type l \) -maxdepth 2 -d -name $1|head -1)
+    dir=$(find ~/Projects \( -type d -or -type l \) -maxdepth 2 -d -name $1|head -1)
     if [ -n "$dir" ]; then
         cd $dir
     fi
+}
+
+function jql {
+    jq -C $@ | less -R
 }
 
 function mkgoproject {
@@ -125,3 +121,37 @@ function countdown {
   fi
 }
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+function hs {
+    heroku $@ -a staging-ditto-v2
+}
+# added by pipsi (https://github.com/mitsuhiko/pipsi)
+export PATH="/Users/davedash/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+export AWS_PAGER=
+
+
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+
