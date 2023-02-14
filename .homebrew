@@ -1,6 +1,6 @@
 pipenv
 git-extras
-hub
+gh
 python
 autossh
 ack
