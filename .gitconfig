@@ -6,7 +6,8 @@
 	status = auto
 	branch = auto
 [core]
-    excludesfile = /Users/davedash/.gitignore
+    excludesfile = /Users/davedash/.dotfiles/.gitignore
+	editor = code --wait
 [alias]
     ff = merge --ff-only
     ci = commit
