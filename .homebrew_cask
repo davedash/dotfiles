@@ -1,16 +1,21 @@
+signal
+bartender
+cron
 dropbox
 iterm2
-pycharm
+#pycharm
 slack
 ## On App Store:
 # Dash
 # Moom
-Skitch
+#Skitch
 firefox
-1password
+#1password
 private-internet-access
 istat-menus
 karabiner-elements
-linear
+linear-linear
 notion
-vscode
+raycast
+visual-studio-code
+cleanshot

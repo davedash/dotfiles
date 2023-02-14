@@ -7,5 +7,5 @@ ack
 wget
 watch
 gist
-mosh
 fzf
+rg
