@@ -39,4 +39,12 @@
 	required = true
 	process = git-lfs filter-process
 [pager]
-	branch = false
+    branch = false
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIs0OkHmJmfH9zrhrCVvxx8nIQKIzbq01AcTs8nZP/4x
