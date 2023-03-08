@@ -15,7 +15,7 @@
     ff = merge --ff-only
     fro = !git fetch origin && git rebase origin/main
 	  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    new = checkout main -b
+    new = checkout origin/main -b
     here = rev-parse --abbrev-ref HEAD
     makepr = !git push origin $(git rev-parse --abbrev-ref HEAD) $@ && gh pr create && gh pr view --web
 		makeprf = !git fro && git update-pr && git makepr
