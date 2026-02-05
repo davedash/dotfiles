@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Find the nearest ancestor directory (including CWD) that contains
+# a scripts/terragrunt.sh file, then exec it with all passed arguments.
+
+set -euo pipefail
+
+current_dir="$(pwd)"
+
+while :; do
+  candidate="${current_dir}/scripts/terragrunt.sh"
+
+  if [ -x "${candidate}" ]; then
+    exec "${candidate}" "$@"
+  fi
+
+  # If we've reached the filesystem root and still haven't found it, bail out.
+  parent_dir="$(dirname "${current_dir}")"
+  if [ "${parent_dir}" = "${current_dir}" ]; then
+    exec terragrunt "$@"
+  fi
+
+  current_dir="${parent_dir}"
+done
