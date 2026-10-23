@@ -33,14 +33,15 @@ grep -v '^#' $ROOT/.homebrew | xargs brew install
 
 echo "Installing apps via Homebrew Cask"
 
-grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask
+# --adopt takes over apps that were installed outside Homebrew instead of failing.
+grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask --adopt
 
 # Things these scripts used to install that are no longer wanted.
 echo "Removing apps that are no longer used"
 for formula in ack gist pipenv; do
     brew list --formula $formula > /dev/null 2>&1 && brew uninstall --formula $formula
 done
-for cask in bartender iterm2 pycharm; do
+for cask in bartender iterm2 pycharm private-internet-access; do
     brew list --cask $cask > /dev/null 2>&1 && brew uninstall --cask $cask
 done
 set -e
