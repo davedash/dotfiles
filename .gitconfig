@@ -56,3 +56,7 @@ signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIs0OkHmJmfH9zrhrCVvxx8nIQKIzbq
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+# Per-machine overrides (email, signing key), not tracked in the repo.
+# Keep this last so it wins.
+[include]
+	path = ~/.gitconfig.local
