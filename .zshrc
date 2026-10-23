@@ -149,6 +149,53 @@ gt() {
     command gt "$@"
 }
 
+# After `brew install` or `brew uninstall`, offer to add or remove the package
+# from ~/.dotfiles/.homebrew (formulae) or .homebrew_cask (casks).
+brew() {
+    command brew "$@" || return $?
+    [[ -t 0 ]] || return 0
+    local cmd=$1
+    case $cmd in
+        install|uninstall|remove|rm) ;;
+        *) return 0 ;;
+    esac
+    shift
+    local formulae=~/.dotfiles/.homebrew casks=~/.dotfiles/.homebrew_cask
+    local kind arg name list
+    local -a names
+    for arg in "$@"; do
+        case $arg in
+            --cask|--casks) kind=cask ;;
+            --formula|--formulae) kind=formula ;;
+            -*) ;;
+            *) names+=($arg) ;;
+        esac
+    done
+    for name in $names; do
+        if [[ $cmd == install ]]; then
+            if [[ $kind == cask ]] || { [[ -z $kind ]] && command brew list --cask $name &> /dev/null; }; then
+                list=$casks
+            else
+                list=$formulae
+            fi
+            grep -qxF -- $name $list && continue
+            if read -q "?Add $name to ${list:t}? [y/N] "; then
+                [[ -n $(tail -c1 $list) ]] && echo >> $list
+                echo $name >> $list
+            fi
+            echo
+        else
+            for list in $formulae $casks; do
+                grep -qxF -- $name $list || continue
+                if read -q "?Remove $name from ${list:t}? [y/N] "; then
+                    sed -i '' "/^${name//\//\\/}\$/d" $list
+                fi
+                echo
+            done
+        fi
+    done
+}
+
 # Prompt, smarter cd, fuzzy finder, and shell history.
 if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
 if command -v zoxide > /dev/null; then eval "$(zoxide init zsh)"; fi
