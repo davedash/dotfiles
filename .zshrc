@@ -18,6 +18,7 @@ fi
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
 export PATH=$PATH:$HOME/.dotfiles/bin:$HOME/bin
+if [[ -x /opt/homebrew/bin/brew ]]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 
 # Ruby:
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
