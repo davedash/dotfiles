@@ -1,10 +1,8 @@
 signal
-bartender
+thaw
 cron
 dropbox
-iterm2
 ghostty
-#pycharm
 slack
 
 ## On App Store:
@@ -26,3 +24,4 @@ visual-studio-code
 cleanshot
 docker
 tableplus
+claude
