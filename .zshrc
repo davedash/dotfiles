@@ -22,7 +22,6 @@ if [[ -x /opt/homebrew/bin/brew ]]; then eval "$(/opt/homebrew/bin/brew shellenv
 
 # Ruby:
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
-export PYTHONPATH=$PYTHONPATH:/mnt/pinboard
 export IRC_USER='davedash'
 # Look at .aliasrc and steal!!!
 export ALIAS_FILE=$HOME/.aliases
@@ -50,9 +49,6 @@ for class in "${(s/ /)ZSH_CLASS}"; do
     fi
 done
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-
 
 function ai {
     autopep8 -i $1
@@ -60,7 +56,7 @@ function ai {
 }
 
 # Local configs, keys, etc should go in ~/.local.
-if [[ -r ${HOME}/.local ]]; then
+if [[ -f ${HOME}/.local ]]; then
     source ${HOME}/.local
 fi
 
@@ -104,11 +100,8 @@ function countdown {
 }
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-function hs {
-    heroku $@ -a staging-ditto-v2
-}
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/Users/davedash/.local/bin:$PATH"
+# Tools installed by uv, pipx, Claude Code, etc.
+export PATH="$HOME/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -130,12 +123,6 @@ load-nvmrc
 setopt HIST_IGNORE_ALL_DUPS
 
 export AWS_PAGER=
-
-
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
-
 
 
 autoload -U +X bashcompinit && bashcompinit
