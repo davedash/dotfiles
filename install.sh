@@ -1,6 +1,5 @@
 #!/bin/bash
 cd ~/.dotfiles
-git submodule update --init
 if [[ ! -d ~/.antidote ]]; then
     git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 fi

@@ -14,3 +14,7 @@ set -e
 echo "Installing apps via Homebrew Cask"
 
 grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask
+
+echo "Installing apps via the Mac App Store"
+
+mas install 1091189122  # Bear

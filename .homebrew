@@ -8,6 +8,8 @@ wget
 watch
 gist
 fzf
-rgstarship
+rg
+starship
 zoxide
 atuin
+mas
