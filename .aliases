@@ -1,7 +1,6 @@
 # Colorful less.
 less='less -r'
 
-omz='cd ~/.oh-my-zsh'
 editaliases='$EDITOR $ALIAS_FILE'
 ga='git add'
 gd='git diff'

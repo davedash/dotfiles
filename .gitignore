@@ -21,7 +21,6 @@ TAGS
 build
 dist
 tags
-.oh-my-zsh
 .idea/
 .ipython/profile_default/history.sqlite
 .vscode

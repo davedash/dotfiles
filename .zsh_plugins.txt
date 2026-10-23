@@ -1,0 +1,18 @@
+# Plugins loaded by antidote (see .zshrc). Order matters.
+
+# Extra completion definitions; must be on fpath before compinit.
+zsh-users/zsh-completions kind:fpath path:src
+
+# compinit runs after fpath is set and before anything that calls compdef.
+$HOME/.zsh/compinit.zsh
+
+# The oh-my-zsh bits we still use, without the rest of oh-my-zsh.
+ohmyzsh/ohmyzsh path:lib/git.zsh
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/dotenv
+
+# fzf-tab must come before anything that wraps widgets.
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+# Syntax highlighting goes last.
+zsh-users/zsh-syntax-highlighting

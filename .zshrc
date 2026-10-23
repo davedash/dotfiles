@@ -1,27 +1,19 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 export EDITOR=vim
 
-ZSH_THEME="bureau"
 ZSH_CLASS="macbook $ZSH_CLASS"
 PROJECT_HOME=$HOME/code
 
-# Uncomment following line if you want red dots to be displayed while waiting
-# for completion
-COMPLETION_WAITING_DOTS="true"
+# Custom completions
+fpath=(~/.zsh/completion $fpath)
 
-# Which plugins would you like to load? (plugins can be found in
-# ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
-# ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv dotenv yarn fzf)
-
-source $ZSH/oh-my-zsh.sh
+# Plugins are listed in ~/.zsh_plugins.txt and managed by antidote.
+if [[ -r ~/.antidote/antidote.zsh ]]; then
+    source ~/.antidote/antidote.zsh
+    antidote load
+else
+    autoload -Uz compinit
+    compinit
+fi
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
@@ -65,17 +57,6 @@ function ai {
     autopep8 -i $1
     pep8 $1
 }
-
-# Custom completions
-fpath=(~/.zsh/completion $fpath)
-
-# compsys initialization
-autoload -U compinit
-compinit
-
-if [[ $ZSH_CLASS == *devapp* ]] ; then
-    PROMPT="$(hostname) $PROMPT"
-fi
 
 # Local configs, keys, etc should go in ~/.local.
 if [[ -r ${HOME}/.local ]]; then
@@ -180,3 +161,9 @@ gt() {
     command gt "$@"
 }
 
+# Prompt, smarter cd, fuzzy finder, and shell history.
+if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
+if command -v zoxide > /dev/null; then eval "$(zoxide init zsh)"; fi
+if command -v fzf > /dev/null; then source <(fzf --zsh); fi
+# atuin loads after fzf so it owns Ctrl-R; the up arrow stays plain history.
+if command -v atuin > /dev/null; then eval "$(atuin init zsh --disable-up-arrow)"; fi
