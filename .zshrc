@@ -155,3 +155,28 @@ export AWS_PAGER=
 #### END FIG ENV VARIABLES ####
 
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# Local Graphite subcommands. gt's own alias system only resolves alias
+# words to other gt subcommands; it can't run external scripts, so we
+# intercept here.
+#   worktree-cleanup — ~/.config/graphite/worktree-cleanup.sh
+#   sync-all         — ~/.dotfiles/bin/gt-sync-all (cleanup + per-worktree gt sync)
+gt() {
+    case "${1-}" in
+        worktree-cleanup)
+            shift
+            "$HOME/.config/graphite/worktree-cleanup.sh" "$@"
+            return $?
+            ;;
+        sync-all)
+            shift
+            "$HOME/.dotfiles/bin/gt-sync-all" "$@"
+            return $?
+            ;;
+    esac
+    command gt "$@"
+}
+

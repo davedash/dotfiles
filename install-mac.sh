@@ -13,4 +13,4 @@ set -e
 
 echo "Installing apps via Homebrew Cask"
 
-grep -v '^#' $ROOT/.homebrew_cask | xargs brew install
+grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask

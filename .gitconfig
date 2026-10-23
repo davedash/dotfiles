@@ -1,50 +1,58 @@
 [user]
-	name = Dave Dash
-	email = dd@davedash.com
+name = Dave Dash
+email = dd@davedash.com
 [color]
-    diff = auto
-	status = auto
-	branch = auto
+diff = auto
+status = auto
+branch = auto
 [core]
-    excludesfile = /Users/davedash/.dotfiles/.gitignore
-	editor = code --wait
+excludesfile = /Users/davedash/.dotfiles/.gitignore
+editor = cursor --wait
+[init]
+defaultBranch = main
 [alias]
-    ff = merge --ff-only
-    ci = commit
-    co = checkout
-    ff = merge --ff-only
-    fro = !git fetch origin && git rebase origin/main
-	  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    new = checkout origin/main -b
-    here = rev-parse --abbrev-ref HEAD
-    makepr = !git push origin $(git rev-parse --abbrev-ref HEAD) $@ && gh pr create && gh pr view --web
-		makeprf = !git fro && git update-pr && git makepr
+ff = merge --ff-only
+ci = commit
+co = checkout
+fro = !git fetch origin && git rebase origin/main
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+new = !git fetch origin && git switch origin/main -c # arg1 automatically appended
+here = rev-parse --abbrev-ref HEAD
+makepr = !git push origin -u $(git rev-parse --abbrev-ref HEAD) $@ && gh pr create && gh pr view --web
+makeprf = !git fro && git update-pr && git makepr
+sync = !gt sync
 [merge]
-	tool = meld
+tool = meld
 [github]
-    user = davedash
+user = davedash
 [interactive]
-	singlekey = 1
+singlekey = 1
 [push]
-    default = matching
+	default = current
 [hub]
-    protocol = ssh
+protocol = ssh
 [credential]
-	helper = osxkeychain
+helper = osxkeychain
 [color "diff"]
-	whitespace = red reverse
+whitespace = red reverse
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+required = true
+process = git-lfs filter-process
 [pager]
-    branch = false
+branch = false
 [gpg]
-	format = ssh
+format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
-	gpgsign = true
+gpgsign = true
 [user]
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIs0OkHmJmfH9zrhrCVvxx8nIQKIzbq01AcTs8nZP/4x
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIs0OkHmJmfH9zrhrCVvxx8nIQKIzbq01AcTs8nZP/4x
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

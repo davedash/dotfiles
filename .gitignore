@@ -25,3 +25,6 @@ tags
 .idea/
 .ipython/profile_default/history.sqlite
 .vscode
+.favorites.json
+.claude/settings.local.json
+.claude

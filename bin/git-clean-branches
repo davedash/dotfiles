@@ -1,9 +1,11 @@
 #!/bin/bash
+
 git checkout main || exit 1
 git rebase origin/main
+git remote prune origin
 
 for branch in $(git branch --no-merged); do
-    git checkout "$branch"
+    git switch "$branch"
     git rebase origin/main || git rebase --abort
 done
 
