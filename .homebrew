@@ -1,15 +1,12 @@
-pipenv
 git-extras
 gh
-python
 autossh
-ack
 wget
 watch
-gist
 fzf
-rg
+ripgrep
 starship
 zoxide
 atuin
 mas
+uv

@@ -1,6 +1,6 @@
 signal
 thaw
-cron
+notion-calendar
 dropbox
 ghostty
 slack
@@ -18,11 +18,11 @@ firefox
 private-internet-access
 istat-menus
 karabiner-elements
-linear-linear
+linear
 notion
 raycast
 visual-studio-code
 cleanshot
-docker
+docker-desktop
 tableplus
 claude

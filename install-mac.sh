@@ -19,13 +19,23 @@ echo "Setting up defaults per .osx"
 
 echo "Installing apps via Homebrew"
 
+# Keep going if one package fails (e.g. an app that's already installed).
 set +e
 grep -v '^#' $ROOT/.homebrew | xargs brew install
-set -e
 
 echo "Installing apps via Homebrew Cask"
 
 grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask
+
+# Things these scripts used to install that are no longer wanted.
+echo "Removing apps that are no longer used"
+for formula in ack gist pipenv; do
+    brew list --formula $formula > /dev/null 2>&1 && brew uninstall --formula $formula
+done
+for cask in bartender iterm2 pycharm; do
+    brew list --cask $cask > /dev/null 2>&1 && brew uninstall --cask $cask
+done
+set -e
 
 echo "Installing apps via the Mac App Store"
 
