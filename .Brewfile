@@ -41,3 +41,5 @@ cask "visual-studio-code"
 # Mac App Store
 mas "Bear", id: 1091189122
 # Dash, Moom
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"

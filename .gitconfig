@@ -32,7 +32,9 @@ singlekey = 1
 [hub]
 protocol = ssh
 [credential]
-helper = osxkeychain
+# The empty helper drops the osxkeychain default from Apple's system config.
+helper =
+helper = /usr/local/share/gcm-core/git-credential-manager
 [color "diff"]
 whitespace = red reverse
 [filter "lfs"]
@@ -56,6 +58,8 @@ signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIs0OkHmJmfH9zrhrCVvxx8nIQKIzbq
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 # Per-machine overrides (email, signing key), not tracked in the repo.
 # Keep this last so it wins.
 [include]
