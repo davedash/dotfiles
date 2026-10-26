@@ -202,3 +202,6 @@ if command -v zoxide > /dev/null; then eval "$(zoxide init zsh)"; fi
 if command -v fzf > /dev/null; then source <(fzf --zsh); fi
 # atuin loads after fzf so it owns Ctrl-R; the up arrow stays plain history.
 if command -v atuin > /dev/null; then eval "$(atuin init zsh --disable-up-arrow)"; fi
+# direnv loads per-directory environments, like the repl-it-web Nix devshell.
+# Its hook goes last so it wraps the prompt hooks above.
+if command -v direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
