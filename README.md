@@ -10,6 +10,12 @@ On a Mac, sign in to the App Store and run
     ~/.dotfiles/install-mac.sh
 
 which installs [Homebrew](https://brew.sh) if needed, applies the macOS
-defaults in `.osx`, installs everything in `.homebrew` and
-`.homebrew_cask`, uninstalls apps that were dropped from those lists, and
-installs App Store apps with `mas`.
+defaults in `.osx`, installs everything in `.Brewfile` (including App Store
+apps), and uninstalls apps that were dropped from it.
+
+`install.sh` links `.Brewfile` to `~/.Brewfile`, so `brew bundle --global`
+works from anywhere. To see what's installed but not in the Brewfile:
+
+    brew bundle cleanup --global
+
+Add `--force` to uninstall those.

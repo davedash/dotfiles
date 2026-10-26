@@ -150,7 +150,7 @@ gt() {
 }
 
 # After `brew install` or `brew uninstall`, offer to add or remove the package
-# from ~/.dotfiles/.homebrew (formulae) or .homebrew_cask (casks).
+# from ~/.dotfiles/.Brewfile.
 brew() {
     command brew "$@" || return $?
     [[ -t 0 ]] || return 0
@@ -160,8 +160,8 @@ brew() {
         *) return 0 ;;
     esac
     shift
-    local formulae=~/.dotfiles/.homebrew casks=~/.dotfiles/.homebrew_cask
-    local kind arg name list
+    local brewfile=~/.dotfiles/.Brewfile
+    local kind arg name
     local -a names
     for arg in "$@"; do
         case $arg in
@@ -173,25 +173,25 @@ brew() {
     done
     for name in $names; do
         if [[ $cmd == install ]]; then
-            if [[ $kind == cask ]] || { [[ -z $kind ]] && command brew list --cask $name &> /dev/null; }; then
-                list=$casks
-            else
-                list=$formulae
-            fi
-            grep -qxF -- $name $list && continue
-            if read -q "?Add $name to ${list:t}? [y/N] "; then
-                [[ -n $(tail -c1 $list) ]] && echo >> $list
-                echo $name >> $list
-            fi
-            echo
-        else
-            for list in $formulae $casks; do
-                grep -qxF -- $name $list || continue
-                if read -q "?Remove $name from ${list:t}? [y/N] "; then
-                    sed -i '' "/^${name//\//\\/}\$/d" $list
-                fi
+            grep -qE "^(brew|cask) \"$name\"" $brewfile && continue
+            if read -q "?Add $name to .Brewfile? [y/N] "; then
                 echo
-            done
+                if [[ $kind == cask ]] || { [[ -z $kind ]] && command brew list --cask $name &> /dev/null; }; then
+                    command brew bundle add --file=$brewfile --cask $name
+                else
+                    command brew bundle add --file=$brewfile $name
+                fi
+            else
+                echo
+            fi
+        else
+            grep -qE "^(brew|cask) \"$name\"" $brewfile || continue
+            if read -q "?Remove $name from .Brewfile? [y/N] "; then
+                echo
+                command brew bundle remove --file=$brewfile $name
+            else
+                echo
+            fi
         fi
     done
 }

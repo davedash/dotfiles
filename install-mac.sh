@@ -25,16 +25,12 @@ done
 echo "Setting up defaults per .osx"
 . $ROOT/.osx
 
-echo "Installing apps via Homebrew"
+echo "Installing apps via Homebrew and the Mac App Store"
 
-# Keep going if one package fails (e.g. an app that's already installed).
+# Keep going if one package fails. brew bundle passes --adopt for casks, so
+# apps installed outside Homebrew are taken over instead of failing.
 set +e
-grep -v '^#' $ROOT/.homebrew | xargs brew install
-
-echo "Installing apps via Homebrew Cask"
-
-# --adopt takes over apps that were installed outside Homebrew instead of failing.
-grep -v '^#' $ROOT/.homebrew_cask | xargs brew install --cask --adopt
+brew bundle install --file=$ROOT/.Brewfile
 
 # Things these scripts used to install that are no longer wanted.
 echo "Removing apps that are no longer used"
@@ -46,6 +42,6 @@ for cask in bartender iterm2 pycharm private-internet-access; do
 done
 set -e
 
-echo "Installing apps via the Mac App Store"
-
-mas install 1091189122  # Bear
+# Show anything else installed that isn't in the Brewfile. Nothing is removed;
+# run the printed command with --force to uninstall them.
+brew bundle cleanup --file=$ROOT/.Brewfile || true

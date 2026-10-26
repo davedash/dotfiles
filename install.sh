@@ -13,7 +13,7 @@ fi
 # Files that live in the repo but shouldn't be linked into ~: repo and
 # install-script files, plus configs for tools and setups no longer in use.
 SKIP=(
-    .git .gitignore .claude .homebrew .homebrew_cask .osx
+    .git .gitignore .claude .osx
     .Xmodmap .Xresources .xinitrc .xmobarrc .xmonad .keynavrc
     .ackrc .buildout .emacs.d .hgrc .mpd .sup .viper .virtualenvs .virtualenvwrapper
 )
